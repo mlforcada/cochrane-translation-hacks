@@ -39,6 +39,7 @@ else :
                 "pl" : "polish" ,
                 "cs" : "czech"  ,
                 "ro" : "romanian" , 
+                "es" : "spanish" , 
                 "fr" : "french" ,
                 "en" : "english" }
 # get results page for selected languages (100 results)
