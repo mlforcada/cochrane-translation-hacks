@@ -109,7 +109,8 @@ for url in urllist :
         filename1 = fileprefix +  "_PLS_" + lang1 + ".html"
         filename2 = fileprefix +  "_PLS_" + lang2 + ".html"
         filename3 = fileprefix +  "_PLS_" + lang3 + ".html"
-        results_file.write("<p>" + fileprefix + ": ")     
+        results_file.write("<p>" + fileprefix + ": ")
+        results_file.write('<a href="' + url + '">original file</a> ') 
         with open(filename1, "w", encoding="utf-8") as text_file :
             for tagg in snippet1 :
                 text_file.write(str(tagg))
