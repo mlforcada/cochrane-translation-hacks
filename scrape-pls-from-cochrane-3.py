@@ -21,6 +21,7 @@ import os
 from bs4 import BeautifulSoup
 import requests
 import re
+import datetime
 
 
 # Google query minus the language word
@@ -83,7 +84,8 @@ results_filename = "results_" + lang1 + "_" + lang2 + "_" + lang3 + ".html"
 results_file = open(results_filename, "w", encoding="utf-8") 
 results_file.write("<html>") # will be tidy-ed later
 results_file.write("<body>") 
-     
+now=datetime.datetime.now()
+results_file.write("<h1>Results:" + now.ctime() + "</h1>")
 
 
 for url in urllist :
