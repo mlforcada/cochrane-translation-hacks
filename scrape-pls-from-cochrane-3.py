@@ -77,6 +77,15 @@ else :
 #   print(url)
 
 # Now process the pages in the URL list
+
+# start writing a results file 
+results_filename = "results_" + lang1 + "_" + lang2 + "_" + lang3 + ".html"
+results_file = open(results_filename, "w", encoding="utf-8") 
+results_file.write("<html>") # will be tidy-ed later
+results_file.write("<body>") 
+     
+
+
 for url in urllist :
 
      pattern=re.compile("CD[0-9][0-9][0-9][0-9][0-9][0-9][.]pub[0-9]?")
@@ -91,6 +100,8 @@ for url in urllist :
      snippet2=soup.find("div",id=lang2 + "_short_abstract")
      snippet3=soup.find("div",id=lang2 + "_short_abstract")
 
+
+
         
 # If all three snippets are not empty, write them to conveniently named files, and tidy them using command-line tidy
      print("Processing " + fileprefix)
@@ -98,18 +109,29 @@ for url in urllist :
         filename1 = fileprefix +  "_PLS_" + lang1 + ".html"
         filename2 = fileprefix +  "_PLS_" + lang2 + ".html"
         filename3 = fileprefix +  "_PLS_" + lang3 + ".html"
-      
+        results_file.write("<p>" + fileprefix + ": ")     
         with open(filename1, "w", encoding="utf-8") as text_file :
             for tagg in snippet1 :
                 text_file.write(str(tagg))
-#        os.system("tidy -m -utf8 -asxml " + filename1 + " >/dev/null 2>/dev/null")
+            results_file.write('<a href="' + filename1 + '">' + lang1 + "</a> ")
+        text_file.close() 
+        os.system("tidy -m -utf8 -asxml " + filename1 + " >/dev/null 2>/dev/null")
         with open(filename2, "w", encoding="utf-8") as text_file :
             for tagg in snippet2 :
                 text_file.write(str(tagg))
-#        os.system("tidy -m  -utf8 -asxml" + filename2 + " >/dev/null 2>/dev/null")
+            results_file.write('<a href="' + filename2 + '">' + lang2 + "</a> ") 
+        text_file.close() 
+        os.system("tidy -m  -utf8 -asxml " + filename2  + " >/dev/null 2>/dev/null")
         with open(filename3, "w", encoding="utf-8") as text_file :
             for tagg in snippet3 :
                 text_file.write(str(tagg))
-#        os.system("tidy -m  -utf8 -asxml" + filename3 + " >/dev/null 2>/dev/null")
-
+            results_file.write('<a href="' + filename3 + '">' + lang3 + "</a> ")
+        text_file.close() 
+        os.system("tidy -m  -utf8 -asxml " + filename3 + " >/dev/null 2>/dev/null")
+        results_file.write("</p>")
 # And that's all folks	
+
+results_file.write("</body></html>")
+results_file.close()
+os.system("tidy -m -utf8 -asxml " + results_filename + " >/dev/null 2>/dev/null")
+
