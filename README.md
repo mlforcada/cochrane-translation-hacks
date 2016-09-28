@@ -1,6 +1,6 @@
 # cochrane-translation-hacks
 
-This contains a experimental script to access Plain Language Summaries of Cochrane reviews.
+This contains a experimental script to harvest Plain Language Summaries of Cochrane reviews.
 
 The file `scrape-pls-from-cochrane.py` takes 2 or more ISO-639-2 language codes and scrapes the corresponding versions of Plain Language Summaries off the first 100 Google search results on the Wiley Library. It returns sets of parallel HTML documents containg the plain language summaries. A timestamped results file in HTML links all of them. All HTML files are tidy-ed. 
 

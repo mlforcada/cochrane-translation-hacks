@@ -55,6 +55,7 @@ else :
                 "hr" : "croatian", 
                 "ru" : "russian",
                 "jp" : "japanese", 
+                "pt" : "portuguese" ,
                 "ta" : "tamil" }
 
 # get results page for selected languages (100 results)
